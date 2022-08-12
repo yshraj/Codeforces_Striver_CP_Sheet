@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+int t;
+cin>>t;
+while(t--)
+{
+    string temp,s;
+    cin>>temp;
+    cin>>s;
+    int n  = temp.size();
+    int k = s.size();
+    map<char,int> temp_map,strmap;
+    
+    for(auto c:temp) temp_map[c]++;
+    
+    int ans = temp_map.size();
+    int count=0;
+    
+    bool op=false;
+    for(int i=0;i<=k-n;)
+    {
+        if(temp_map.find(s[i])==temp_map.end()) i++;
+        
+        else 
+        {
+            count=0;
+            map<char,int> strmap;
+            for(int j = i ;j<=i+n;j++)
+            {
+               strmap[s[j]]++;
+               if(strmap == temp_map) 
+               {op=true;
+                break;}
+            }
+            if(op)
+            {
+                break;
+            }else i++;
+             
+        }
+   
+        
+    }
+    
+    
+    if(op) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+}
+}
